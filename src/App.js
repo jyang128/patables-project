@@ -8,7 +8,13 @@ export default class App extends React.Component {
   }
   render() {
     return (
-      <div>Hello World</div>
+      <div className="container">
+        <div className="row">
+          <div className="col-12 d-flex justify-content-center py-4">
+            Hello World
+          </div>
+        </div>
+      </div>
     )
   }
 }

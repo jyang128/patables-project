@@ -1,7 +1,7 @@
-const path = require('path');
+const path = require('path')
 
-const srcPath = path.resolve(__dirname, 'src');
-const publicPath = path.resolve(__dirname, 'dist');
+const srcPath = path.resolve(__dirname, 'src')
+const publicPath = path.resolve(__dirname, 'dist')
 
 module.exports = {
   resolve: {
@@ -29,7 +29,14 @@ module.exports = {
   },
   devtool: 'source-map',
   devServer: {
+    host: '0.0.0.0',
+    port: 3000,
     contentBase: publicPath,
-    historyApiFallback: true
+    historyApiFallback: true,
+    watchContentBase: true,
+    stats: 'minimal',
+    proxy: {
+      '/api': 'http://localhost:3001'
+    }
   }
-};
+}
