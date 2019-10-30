@@ -60,10 +60,6 @@
       }
     },
     "rules": {
-      "semi": [
-        "error",
-        "always"
-      ],
       "padded-blocks": 0,
       "arrow-parens": [
         "error",
