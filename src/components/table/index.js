@@ -38,7 +38,8 @@ class Example extends Component {
     super(props);
 
     this.state = {
-      users: []
+      users: [],
+      baseURL: ''
     };
   }
 
@@ -228,7 +229,7 @@ class Example extends Component {
                 searchKeys={["firstname", "lastname", 'id']}
                 startingPage={1}
                 pageNeighbors={3}
-                URL={this.state.baseURL}
+                url={this.state.baseURL}
               />
             </div>
           </div>
