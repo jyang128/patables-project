@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import data from './data.json'
-import { MumuTable } from "../mumutable";
+import { MumuTable } from '../mumutable'
 import styled from '@emotion/styled'
-import { Formik } from 'formik';
+import { Formik } from 'formik'
 import * as Yup from 'yup'
-import { Patables, Pagination } from "../../../node_modules/patables";
+import { Patables, Pagination } from '../../../node_modules/patables'
 
 const TableData = styled.td`
   min-width: 120px;
@@ -35,12 +35,12 @@ const Error = styled.div`
 
 class Example extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       users: [],
       baseURL: ''
-    };
+    }
   }
 
   componentDidMount() {
@@ -55,7 +55,7 @@ class Example extends Component {
       occupation: '',
       phone: ''
     }
-    const BasicForm = (props) => (
+    const BasicForm = props => (
       <div className='form-group mb-2 col'>
         <form onSubmit={props.handleSubmit}>
           <StyledDiv className='input-group'>
@@ -122,13 +122,13 @@ class Example extends Component {
 
           <button type="submit" className="btn btn-primary mt-3" >
             Add Data
-            </button>
+          </button>
         </form>
       </div>
-    );
+    )
 
     const renderTable = props => {
-      console.log(props);
+      console.log(props)
       return (
         <div>
           <div className="form-row mb-3 col">
@@ -147,7 +147,7 @@ class Example extends Component {
                   className="form-control"
                   value={props.resultSet}
                   onChange={e => {
-                    props.setResultSet(parseInt(e.target.value));
+                    props.setResultSet(parseInt(e.target.value))
                   }}
                 >
                   <option>5</option>
@@ -210,8 +210,8 @@ class Example extends Component {
             paginationButtons={props.paginationButtons} />
 
         </div>
-      );
-    };
+      )
+    }
 
     return (
       <div className="mt-5">
@@ -226,7 +226,7 @@ class Example extends Component {
                 resultSet={5}
                 sortColumn="id"
                 sortOrder="ASC"
-                searchKeys={["firstname", "lastname", 'id']}
+                searchKeys={['firstname', 'lastname', 'id']}
                 startingPage={1}
                 pageNeighbors={3}
                 url={this.state.baseURL}
@@ -235,8 +235,8 @@ class Example extends Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default Example;
+export default Example
