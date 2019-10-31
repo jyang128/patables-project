@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
-import { Patables } from 'patables'
+import { Patables } from 'patables2.0'
+import Example from './components/table'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -56,6 +57,8 @@ export default class App extends React.Component {
           <Patables
             render={renderTable}
             initialData={activities} />
+
+          <Example/>
         </div>
       </div>
     )
