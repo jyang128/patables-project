@@ -1,30 +1,61 @@
 import React from 'react'
 import axios from 'axios'
+import { Patables } from 'patables'
 
 export default class App extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      activity: ''
+      activities: []
     }
   }
   componentDidMount() {
     axios.get('http://www.boredapi.com/api/activity/')
       .then(response => {
         console.log(response)
-        this.setState({ activity: response.data.activity })
+        this.setState(prevState => ({ activities: [response.data.activity] }))
       })
       .catch(err => console.error(err))
   }
   render() {
-    const { activity } = this.state
+    const { activities } = this.state
+    console.log('activities', activities)
+
+    const renderTable = props => {
+      console.log('props', props)
+
+      return (
+        <table>
+          <thead>
+            <tr>
+              <th>Option(s)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.activities.length === 0 ? (
+              <tr>
+                <td>Nothing!</td>
+              </tr>
+            ) : (
+              <tr>
+                <td>{props.visibleData[0]}</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      )
+    }
+
     return (
       <div className="container">
         <div className="row">
           <div className="col-12 d-flex justify-content-center py-4">
-            {activity}
+            Activity
           </div>
+          <Patables
+            render={renderTable}
+            initialData={activities} />
         </div>
       </div>
     )
