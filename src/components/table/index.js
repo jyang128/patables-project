@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from '@emotion/styled'
 import { Patables, Pagination } from "patables2.0";
+import axios from 'axios'
 
 const TableData = styled.td`
   min-width: 120px;
@@ -33,96 +34,26 @@ class Example extends Component {
     super(props);
 
     this.state = {
-      users: []
+      jokes: []
     };
   }
 
   componentDidMount() {
-    this.setState(() => ({ users: data }))
+    axios.get('https://icanhazdadjoke.com/search', {
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+      .then(response => {
+        console.log('jokes from API', response)
+        this.setState(prevState => ({ jokes: response.data.results }))
+      })
+      .catch(err => console.error(err))
   }
 
   render() {
-    const initialValues = {
-      firstname: '',
-      lastname: '',
-      dob: '',
-      occupation: '',
-      phone: ''
-    }
-    const BasicForm = (props) => (
-      <div className='form-group mb-2 col'>
-        <form onSubmit={props.handleSubmit}>
-          <StyledDiv className='input-group'>
-            <Label htmlFor=''>First name</Label>
-            <input
-              className='form-control'
-              type="text"
-              onChange={props.handleChange}
-              onBlur={props.handleBlur}
-              value={props.values.firstname}
-              name="firstname"
-            />
-            {props.errors.firstname && <Error id="feedback" className='col-2' >{props.errors.firstname}</Error>}
-          </StyledDiv>
-          <StyledDiv className='input-group'>
-            <Label htmlFor=''>Lastname</Label>
-            <input
-              className='form-control'
-              type="text"
-              onChange={props.handleChange}
-              onBlur={props.handleBlur}
-              value={props.values.lastname}
-              name="lastname"
-            />
-            {props.errors.lastname && <Error id="feedback" className='col-2' >{props.errors.lastname}</Error>}
-          </StyledDiv>
-          <StyledDiv className='input-group'>
-            <Label htmlFor=''>DOB</Label>
-            <input
-              className='form-control'
-              type="text"
-              onChange={props.handleChange}
-              onBlur={props.handleBlur}
-              value={props.values.dob}
-              name="dob"
-            />
-            {props.errors.dob && <Error id="feedback" className='col-2' >{props.errors.dob}</Error>}
-          </StyledDiv>
-          <StyledDiv className='input-group'>
-            <Label htmlFor=''>Occupation</Label>
-            <input
-              className='form-control'
-              type="text"
-              onChange={props.handleChange}
-              onBlur={props.handleBlur}
-              value={props.values.occupation}
-              name="occupation"
-            />
-            {props.errors.occupation && <Error id="feedback" className='col-2' >{props.errors.occupation}</Error>}
-          </StyledDiv>
-          <StyledDiv className='input-group'>
-            <Label htmlFor=''>Phone</Label>
-            <input
-              className='form-control'
-              type="text"
-              onChange={props.handleChange}
-              onBlur={props.handleBlur}
-              value={props.values.phone}
-              name="phone"
-            />
-            {props.errors.phone && <Error id="feedback" className='col-2' >{props.errors.phone}</Error>}
-          </StyledDiv>
-          {props.errors.name && <div id="feedback">{props.errors.name}</div>}
-
-          <button type="submit" className="btn btn-primary mt-3" >
-            Add Data
-            </button>
-        </form>
-      </div>
-    );
-
     const renderTable = props => {
-      console.log(props);
+      console.log('props from Patables', props);
       return (
         <div>
           <div className="form-row mb-3 col">
@@ -156,22 +87,10 @@ class Example extends Component {
             <thead className="bg-primary text-white">
               <tr>
                 <th name="id" onClick={props.setColumnSortToggle}>
-                  id
+                  Permalink
                 </th>
                 <th name="firstname" onClick={props.setColumnSortToggle}>
-                  FirstName
-                </th>
-                <th name="lastname" onClick={props.setColumnSortToggle}>
-                  LastName
-                </th>
-                <th name="dob" onClick={props.setColumnSortToggle}>
-                  Date Of Birth
-                </th>
-                <th name="occupation" onClick={props.setColumnSortToggle}>
-                  occupation
-                </th>
-                <th name="phone" onClick={props.setColumnSortToggle}>
-                  phone
+                  Joke
                 </th>
                 <th name="action" onClick={props.setColumnSortToggle}>
                   Action
@@ -179,16 +98,12 @@ class Example extends Component {
               </tr>
             </thead>
             <tbody>
-              {props.visibleData.map((user, i) => {
+              {props.visibleData.map((joke, i) => {
                 return (
                   <tr key={i}>
-                    <TableData>{user.id}</TableData>
-                    <TableData>{user.firstname}</TableData>
-                    <TableData>{user.lastname}</TableData>
-                    <TableData>{user.dob}</TableData>
-                    <TableData>{user.occupation}</TableData>
-                    <TableData>{user.phone}</TableData>
-                    <TableData onClick={() => props.removeTableData(this.state.users, user.id)}>Remove ❌</TableData>
+                    <TableData><a href={`https://icanhazdadjoke.com/j/${joke.id}`} target="_blank">Link 🏹</a></TableData>
+                    <TableData>{joke.joke}</TableData>
+                    <TableData onClick={() => props.removeTableData(this.state.jokes, joke.id)}>Remove ❌</TableData>
                   </tr>
                 )
               })}
@@ -210,17 +125,17 @@ class Example extends Component {
     return (
       <div className="mt-5">
         <div className="row">
-          <div className="col-8 ml-5">
+          <div className="col ml-5">
             <div>
-              <h1>Mumu Table</h1>
+              <h1>Dad Jokes</h1>
               <hr className="mb-4" />
               <Patables
                 render={renderTable}
-                initialData={this.state.users}
+                initialData={this.state.jokes}
                 resultSet={5}
                 sortColumn="id"
-                sortOrder="ASC"
-                searchKeys={["firstname", "lastname", 'id']}
+                sortOrder="asc"
+                searchKeys={["id"]}
                 startingPage={1}
                 pageNeighbors={3}
                 URL={this.state.baseURL}
