@@ -5,7 +5,7 @@ import { MumuTable } from "../mumutable";
 import styled from '@emotion/styled'
 import { Formik } from 'formik';
 import * as Yup from 'yup'
-import { Patables, Pagination } from "../../../node_modules/patables";
+import { Patables, Pagination } from "../../../node_modules/patables2.0";
 
 const TableData = styled.td`
   min-width: 120px;
