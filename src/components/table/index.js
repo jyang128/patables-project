@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import styled from '@emotion/styled'
 import { Patables, Pagination } from "patables2.0";
-import axios from 'axios'
 
 const TableData = styled.td`
   min-width: 120px;
@@ -33,23 +32,8 @@ class Example extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      // jokes: []
-    };
+    this.state = {};
   }
-
-  // componentDidMount() {
-  //   axios.get('https://icanhazdadjoke.com/search', {
-  //     headers: {
-  //       'Accept': 'application/json'
-  //     }
-  //   })
-  //     .then(response => {
-  //       console.log('jokes from API', response)
-  //       this.setState(prevState => ({ jokes: response.data.results }))
-  //     })
-  //     .catch(err => console.error(err))
-  // }
 
   render() {
     const renderTable = props => {
@@ -59,12 +43,13 @@ class Example extends Component {
           <div className="form-row mb-3 col">
             <SearchHeader>Search</SearchHeader>
             <input
-              className="form-control col-6"
+              className="form-control col-5"
               placeholder="Search..."
               value={props.search}
               onChange={props.setSearchTerm}
             />
-            <button onClick={props.submitSearch}>Submit Search</button>
+            <button className="btn btn-info ml-2" onClick={props.submitSearch}>Submit</button>
+            <button className="btn btn-link ml-2" onClick={props.clearSearch}>Reset</button>
 
             <div className="col offset-2">
               <div className="form-inline">
@@ -87,14 +72,11 @@ class Example extends Component {
           <table className="table table-hover mb-4">
             <thead className="bg-primary text-white">
               <tr>
-                <th name="id" onClick={props.setColumnSortToggle}>
-                  Permalink
-                </th>
                 <th name="firstname" onClick={props.setColumnSortToggle}>
                   Joke
                 </th>
-                <th name="action" onClick={props.setColumnSortToggle}>
-                  Action
+                <th name="id" onClick={props.setColumnSortToggle}>
+                  Permalink
                 </th>
               </tr>
             </thead>
@@ -102,22 +84,21 @@ class Example extends Component {
               {props.visibleData.map((joke, i) => {
                 return (
                   <tr key={i}>
-                    <TableData><a href={`https://icanhazdadjoke.com/j/${joke.id}`} target="_blank">Link 🏹</a></TableData>
                     <TableData>{joke.joke}</TableData>
-                    <TableData onClick={() => props.removeTableData(this.state.jokes, joke.id)}>Remove ❌</TableData>
+                    <TableData><a href={`https://icanhazdadjoke.com/j/${joke.id}`} target="_blank">Link 🏹</a></TableData>
                   </tr>
                 )
               })}
             </tbody>
           </table>
 
-          {/* <Pagination
+          <Pagination
             totalPage={props.totalPages}
             prevDisabled={props.prevDisabled}
             nextDisabled={props.nextDisabled}
             setPageNumber={props.setPageNumber}
             pageNumber={props.currentPage}
-            paginationButtons={props.paginationButtons} /> */}
+            paginationButtons={props.paginationButtons} />
 
         </div>
       );
@@ -132,14 +113,12 @@ class Example extends Component {
               <hr className="mb-4" />
               <Patables
                 render={renderTable}
-                // initialData={this.state.jokes}
-                resultSet={5}
-                limit={7}
+                limit={5}
                 sortColumn="id"
                 sortOrder="asc"
                 searchKeys={["id"]}
-                startingPage={1}
-                pageNeighbors={3}
+                startingPage={2}
+                pageNeighbors={2}
                 url={'https://icanhazdadjoke.com/search/'}
                 headers={{ 
                   headers: {
