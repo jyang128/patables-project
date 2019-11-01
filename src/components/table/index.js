@@ -34,22 +34,22 @@ class Example extends Component {
     super(props);
 
     this.state = {
-      jokes: []
+      // jokes: []
     };
   }
 
-  componentDidMount() {
-    axios.get('https://icanhazdadjoke.com/search', {
-      headers: {
-        'Accept': 'application/json'
-      }
-    })
-      .then(response => {
-        console.log('jokes from API', response)
-        this.setState(prevState => ({ jokes: response.data.results }))
-      })
-      .catch(err => console.error(err))
-  }
+  // componentDidMount() {
+  //   axios.get('https://icanhazdadjoke.com/search', {
+  //     headers: {
+  //       'Accept': 'application/json'
+  //     }
+  //   })
+  //     .then(response => {
+  //       console.log('jokes from API', response)
+  //       this.setState(prevState => ({ jokes: response.data.results }))
+  //     })
+  //     .catch(err => console.error(err))
+  // }
 
   render() {
     const renderTable = props => {
@@ -64,13 +64,14 @@ class Example extends Component {
               value={props.search}
               onChange={props.setSearchTerm}
             />
+            <button onClick={props.submitSearch}>Submit Search</button>
 
             <div className="col offset-2">
               <div className="form-inline">
                 <label className="my-1 mr-2">Result set: </label>
                 <select
                   className="form-control"
-                  value={props.resultSet}
+                  value={props.limit}
                   onChange={e => {
                     props.setResultSet(parseInt(e.target.value));
                   }}
@@ -110,13 +111,13 @@ class Example extends Component {
             </tbody>
           </table>
 
-          <Pagination
+          {/* <Pagination
             totalPage={props.totalPages}
             prevDisabled={props.prevDisabled}
             nextDisabled={props.nextDisabled}
             setPageNumber={props.setPageNumber}
             pageNumber={props.currentPage}
-            paginationButtons={props.paginationButtons} />
+            paginationButtons={props.paginationButtons} /> */}
 
         </div>
       );
@@ -131,14 +132,20 @@ class Example extends Component {
               <hr className="mb-4" />
               <Patables
                 render={renderTable}
-                initialData={this.state.jokes}
+                // initialData={this.state.jokes}
                 resultSet={5}
+                limit={7}
                 sortColumn="id"
                 sortOrder="asc"
                 searchKeys={["id"]}
                 startingPage={1}
                 pageNeighbors={3}
-                URL={this.state.baseURL}
+                url={'https://icanhazdadjoke.com/search/'}
+                headers={{ 
+                  headers: {
+                      'Accept': 'application/json'
+                    }
+                }}
               />
             </div>
           </div>
