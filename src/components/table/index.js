@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from '@emotion/styled'
-import { Patables, Pagination } from "patables2.0";
+import { PatablesAsync, Pagination } from "patables2.0";
 
 const TableData = styled.td`
   min-width: 120px;
@@ -37,7 +37,7 @@ class Example extends Component {
 
   render() {
     const renderTable = props => {
-      console.log('props from Patables', props);
+      console.log('props from PatablesAsync:', props);
       return (
         <div>
           <div className="form-row mb-3 col">
@@ -111,13 +111,13 @@ class Example extends Component {
             <div>
               <h1>Dad Jokes</h1>
               <hr className="mb-4" />
-              <Patables
+              <PatablesAsync
                 render={renderTable}
                 limit={5}
                 sortColumn="id"
                 sortOrder="asc"
                 searchKeys={["id"]}
-                startingPage={2}
+                startingPage={1}
                 pageNeighbors={2}
                 url={'https://icanhazdadjoke.com/search/'}
                 headers={{ 
