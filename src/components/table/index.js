@@ -11,23 +11,6 @@ const SearchHeader = styled.h3`
   margin-right:10px;
 `
 
-const Label = styled.label`
-  width: 100px;
-`
-
-const StyledDiv = styled.div`
-  margin-right:10px;
-  margin-bottom:20px;
-`
-
-const Error = styled.div`
-  position: absolute;
-  font-size: small;
-  color: red; 
-  bottom: -17px;
-  right: 48%;
-`
-
 class Example extends Component {
   constructor(props) {
     super(props);
