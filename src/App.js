@@ -1,5 +1,6 @@
 import React from 'react'
-import Example from './components/table'
+import Example1 from './components/table/Example1'
+import Example2 from './components/table/Example2'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -11,7 +12,8 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="container">
-        <Example />
+        <Example2 />
+        <Example1 />
       </div>
     )
   }
