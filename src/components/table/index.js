@@ -102,8 +102,13 @@ class Example extends Component {
                 searchKeys={["id"]}
                 startingPage={1}
                 pageNeighbors={2}
+                //! passing requested parameters separately or in array?
+                pageParam={'page'}
+                limitParam={'limit'}
+                searchParam={'term'}
+                //!
                 url={'https://icanhazdadjoke.com/search/'}
-                headers={{ 
+                config={{ 
                   headers: {
                       'Accept': 'application/json'
                     }
