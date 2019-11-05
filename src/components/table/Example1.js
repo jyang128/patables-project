@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from '@emotion/styled'
-import { PatablesAsync, Pagination } from "patables2.0";
+import { Patables, Pagination } from "patables2.0";
+import axios from 'axios';
 
 const TableData = styled.td`
   min-width: 120px;
@@ -11,16 +12,30 @@ const SearchHeader = styled.h3`
   margin-right:10px;
 `
 
-class Example extends Component {
+class Example1 extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      jokes: []
+    };
+  }
+
+  componentDidMount() {
+    axios.get('https://icanhazdadjoke.com/search', { 
+      headers: {
+          'Accept': 'application/json'
+        }
+    })
+    .then(response => {
+      this.setState({ jokes: response.data.results })
+    })
+    .catch(err => console.error(err))
   }
 
   render() {
     const renderTable = props => {
-      console.log('props from PatablesAsync:', props);
+      console.log('1) props from Patables:', props);
       return (
         <div>
           <div className="form-row mb-3 col">
@@ -31,10 +46,8 @@ class Example extends Component {
               value={props.search}
               onChange={props.setSearchTerm}
             />
-            <button className="btn btn-info ml-2" onClick={props.submitSearch}>Submit</button>
-            <button className="btn btn-link ml-2" onClick={props.clearSearch}>Reset</button>
 
-            <div className="col offset-2">
+            <div className="col offset-4">
               <div className="form-inline">
                 <label className="my-1 mr-2">Result set: </label>
                 <select
@@ -53,7 +66,7 @@ class Example extends Component {
             </div>
           </div>
           <table className="table table-hover mb-4">
-            <thead className="bg-primary text-white">
+            <thead className="bg-secondary text-white">
               <tr>
                 <th name="firstname" onClick={props.setColumnSortToggle}>
                   Joke
@@ -88,31 +101,21 @@ class Example extends Component {
     };
 
     return (
-      <div className="mt-5">
+      <div className="my-5">
         <div className="row">
           <div className="col ml-5">
             <div>
-              <h1>Dad Jokes</h1>
+              <h1>Patables</h1>
               <hr className="mb-4" />
-              <PatablesAsync
+              <Patables
+                initialData={this.state.jokes}
                 render={renderTable}
-                limit={5}
+                resultSet={5}
                 sortColumn="id"
                 sortOrder="asc"
-                searchKeys={["id"]}
+                searchKeys={["joke"]}
                 startingPage={1}
                 pageNeighbors={2}
-                //! passing requested parameters separately or in array?
-                pageParam={'page'}
-                limitParam={'limit'}
-                searchParam={'term'}
-                //!
-                url={'https://icanhazdadjoke.com/search/'}
-                config={{ 
-                  headers: {
-                      'Accept': 'application/json'
-                    }
-                }}
               />
             </div>
           </div>
@@ -122,4 +125,4 @@ class Example extends Component {
   }
 }
 
-export default Example;
+export default Example1;
