@@ -11,7 +11,7 @@ const SearchHeader = styled.h3`
   margin-right:10px;
 `
 
-const CatLoading = styled.td`
+const CatLoading = styled.div`
   background-image: url('https://thumbs.gfycat.com/LongShortAustraliancurlew-size_restricted.gif');
   width:200px;
   height:200px;
