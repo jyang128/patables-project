@@ -11,6 +11,16 @@ const SearchHeader = styled.h3`
   margin-right:10px;
 `
 
+const CatLoading = styled.td`
+  background-image: url('https://thumbs.gfycat.com/LongShortAustraliancurlew-size_restricted.gif');
+  width:200px;
+  height:200px;
+  background-color: #cccccc;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+`
+
 class Example2 extends Component {
   constructor(props) {
     super(props);
@@ -64,7 +74,13 @@ class Example2 extends Component {
               </tr>
             </thead>
             <tbody>
-              {props.visibleData.map((joke, i) => {
+              {props.isLoading
+              ? <tr><TableData>Loading...<CatLoading /></TableData></tr>
+              : !props.isLoading && props.visibleData.length === 0 
+              ? <tr>
+                  <TableData>No result</TableData>
+                </tr>
+              : props.visibleData.map((joke, i) => {
                 return (
                   <tr key={i}>
                     <TableData>{joke.joke}</TableData>
@@ -74,7 +90,6 @@ class Example2 extends Component {
               })}
             </tbody>
           </table>
-
           <Pagination
             totalPage={props.totalPages}
             prevDisabled={props.prevDisabled}
@@ -106,13 +121,14 @@ class Example2 extends Component {
                 pageParam={'page'}
                 limitParam={'limit'}
                 searchParam={'term'}
-                //!
                 url={'https://icanhazdadjoke.com/search/'}
                 config={{ 
                   headers: {
                       'Accept': 'application/json'
                     }
                 }}
+                dataPath={'data.results'}
+                totalPagesPath={'data.total_pages'}
               />
             </div>
           </div>
