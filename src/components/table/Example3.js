@@ -68,6 +68,9 @@ class Example3 extends Component {
                 <th name="firstname" onClick={props.setColumnSortToggle}>
                   Joke
                 </th>
+                <th name="firstname" onClick={props.setColumnSortToggle}>
+                  PublishedAt
+                </th>
                 <th name="id" onClick={props.setColumnSortToggle}>
                   Permalink
                 </th>
@@ -84,6 +87,7 @@ class Example3 extends Component {
                 return (
                   <tr key={i}>
                     <TableData>{news.title}</TableData>
+                    <TableData>{news.publishedAt}</TableData>
                     <TableData><a href={`${news.url}`} target="_blank">Link 🏹</a></TableData>
                   </tr>
                 )
@@ -119,7 +123,8 @@ class Example3 extends Component {
                 pageNeighbors={2}
                 pageParam={'page'}
                 limitParam={'pageSize'}
-                searchParam={['q', 'apple']}
+                searchParam={['q', 'Listening to Your Siri Commands']}
+                sortParam={['sortBy','popularity']}
                 url={'https://newsapi.org/v2/everything?'}
                 apiKey={['apiKey','84e1a2b37e994f70a59d1c73e54333c4']}
                 config={{ 
@@ -128,7 +133,7 @@ class Example3 extends Component {
                     }
                 }}
                 dataPath={['data','articles']}
-                totalPagesPath={['data','totalResults']}
+                pageTotalPath={['data','totalResults']}
               />
             </div>
           </div>
