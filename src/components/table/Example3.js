@@ -21,7 +21,7 @@ const CatLoading = styled.div`
   background-size: cover;
 `
 
-class Example2 extends Component {
+class Example3 extends Component {
   constructor(props) {
     super(props);
 
@@ -80,11 +80,11 @@ class Example2 extends Component {
               ? <tr>
                   <TableData>No result</TableData>
                 </tr>
-              : props.visibleData.map((joke, i) => {
+              : props.visibleData.map((news, i) => {
                 return (
                   <tr key={i}>
-                    <TableData>{joke.joke}</TableData>
-                    <TableData><a href={`https://icanhazdadjoke.com/j/${joke.id}`} target="_blank">Link 🏹</a></TableData>
+                    <TableData>{news.title}</TableData>
+                    <TableData><a href={`${news.url}`} target="_blank">Link 🏹</a></TableData>
                   </tr>
                 )
               })}
@@ -107,7 +107,7 @@ class Example2 extends Component {
         <div className="row">
           <div className="col ml-5">
             <div>
-              <h1>PatablesAsync</h1>
+              <h1>PatablesAsync - news API</h1>
               <hr className="mb-4" />
               <PatablesAsync
                 render={renderTable}
@@ -117,18 +117,18 @@ class Example2 extends Component {
                 searchKeys={["joke"]}
                 startingPage={1}
                 pageNeighbors={2}
-                //! passing requested parameters separately or in array?
                 pageParam={'page'}
-                limitParam={'limit'}
-                searchParam={'term'}
-                url={'https://icanhazdadjoke.com/search/'}
+                limitParam={'pageSize'}
+                searchParam={['q', 'apple']}
+                url={'https://newsapi.org/v2/everything?'}
+                apiKey={['apiKey','84e1a2b37e994f70a59d1c73e54333c4']}
                 config={{ 
                   headers: {
                       'Accept': 'application/json'
                     }
                 }}
-                dataPath={['data','results']}
-                totalPagesPath={['data','total_pages']}
+                dataPath={['data','articles']}
+                totalPagesPath={['data','totalResults']}
               />
             </div>
           </div>
@@ -138,4 +138,4 @@ class Example2 extends Component {
   }
 }
 
-export default Example2;
+export default Example3;
