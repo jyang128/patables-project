@@ -30,7 +30,7 @@ class Example2 extends Component {
 
   render() {
     const renderTable = props => {
-      console.log('2) props from PatablesAsync:', props);
+      // console.log('2) props from PatablesAsync:', props);
       return (
         <div>
           <div className="form-row mb-3 col">
@@ -127,8 +127,8 @@ class Example2 extends Component {
                       'Accept': 'application/json'
                     }
                 }}
-                dataPath={['data','results']}
-                totalPagesPath={['data','total_pages']}
+                dataPath={['data', 'results']}
+                pageTotalPath={['data','total_pages']}
               />
             </div>
           </div>
