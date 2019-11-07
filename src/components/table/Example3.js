@@ -65,10 +65,10 @@ class Example3 extends Component {
           <table className="table table-hover mb-4">
             <thead className="bg-primary text-white">
               <tr>
-                <th name="firstname" onClick={props.setColumnSortToggle}>
-                  Joke
+                <th name="News" onClick={props.setColumnSortToggle}>
+                  News Title
                 </th>
-                <th name="firstname" onClick={props.setColumnSortToggle}>
+                <th name="PublishedAt" onClick={props.setColumnSortToggle}>
                   PublishedAt
                 </th>
                 <th name="id" onClick={props.setColumnSortToggle}>

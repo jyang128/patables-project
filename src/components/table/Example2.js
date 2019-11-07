@@ -120,7 +120,7 @@ class Example2 extends Component {
                 //! passing requested parameters separately or in array?
                 pageParam={'page'}
                 limitParam={'limit'}
-                searchParam={['term']}
+                searchParam={['term','']}
                 url={'https://icanhazdadjoke.com/search/'}
                 config={{ 
                   headers: {
