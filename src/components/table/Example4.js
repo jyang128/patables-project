@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from '@emotion/styled'
 import { PatablesAsync, Pagination } from "patables2.0";
+import {API_URL, API_KEY} from '../../../credentials'
 
 const TableData = styled.td`
   min-width: 120px;
@@ -21,7 +22,7 @@ const CatLoading = styled.div`
   background-size: cover;
 `
 
-class Example3 extends Component {
+class Example4 extends Component {
   constructor(props) {
     super(props);
 
@@ -66,13 +67,13 @@ class Example3 extends Component {
             <thead className="bg-primary text-white">
               <tr>
                 <th name="News" onClick={props.setColumnSortToggle}>
-                  News Title
+                  Name
                 </th>
-                <th name="PublishedAt" onClick={props.setColumnSortToggle}>
-                  PublishedAt
+                <th name="original_name" onClick={props.setColumnSortToggle}>
+                  Original name
                 </th>
-                <th name="id" onClick={props.setColumnSortToggle}>
-                  Permalink
+                <th name="uri" onClick={props.setColumnSortToggle}>
+                  Download
                 </th>
               </tr>
             </thead>
@@ -83,24 +84,24 @@ class Example3 extends Component {
               ? <tr>
                   <TableData>No result</TableData>
                 </tr>
-              : props.visibleData.map((news, i) => {
+              : props.visibleData.map((asset, i) => {
                 return (
                   <tr key={i}>
-                    <TableData>{news.title}</TableData>
-                    <TableData>{news.publishedAt}</TableData>
-                    <TableData><a href={`${news.url}`} target="_blank">Link 🏹</a></TableData>
+                    <TableData>{asset.name}</TableData>
+                    <TableData>{asset.original_name}</TableData>
+                    <TableData><a href={`${asset.uri}`} target="_blank">Download 🏹</a></TableData>
                   </tr>
                 )
               })}
             </tbody>
           </table>
-          <Pagination
+          {/* <Pagination
             totalPage={props.totalPages}
             prevDisabled={props.prevDisabled}
             nextDisabled={props.nextDisabled}
             setPageNumber={props.setPageNumber}
             pageNumber={props.currentPage}
-            paginationButtons={props.paginationButtons} />
+            paginationButtons={props.paginationButtons} /> */}
 
         </div>
       );
@@ -111,7 +112,7 @@ class Example3 extends Component {
         <div className="row">
           <div className="col ml-5">
             <div>
-              <h1>PatablesAsync - news API</h1>
+              <h1>PatablesAsync - SCT</h1>
               <hr className="mb-4" />
               <PatablesAsync
                 render={renderTable}
@@ -121,19 +122,18 @@ class Example3 extends Component {
                 searchKeys={["joke"]}
                 startingPage={1}
                 pageNeighbors={2}
-                pageParam={'page'}
-                limitParam={'pageSize'}
-                searchParam={['q', 'Listening to Your Siri Commands']}
-                sortParam={['sortBy','popularity']}
-                url={''}
-                apiKey={['apiKey','84e1a2b37e994f70a59d1c73e54333c4']}
+                pageParam={''} //! we dont have this
+                limitParam={'max'}
+                searchParam={['q', 'sanity']} 
+                sortParam={[]} //! we dont have this
+                url={`${API_URL}/assets/`}
                 config={{ 
                   headers: {
-                      'Accept': 'application/json'
+                      'Authorization': API_KEY
                     }
                 }}
-                dataPath={['data','articles']}
-                pageTotalPath={['data','totalResults']}
+                dataPath={['data']}
+                pageTotalPath={['data']}
               />
             </div>
           </div>
@@ -143,4 +143,4 @@ class Example3 extends Component {
   }
 }
 
-export default Example3;
+export default Example4;
