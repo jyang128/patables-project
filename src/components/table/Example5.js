@@ -22,7 +22,7 @@ const CatLoading = styled.div`
   background-size: cover;
 `
 
-class Example4 extends Component {
+class Example5 extends Component {
   constructor(props) {
     super(props);
 
@@ -66,30 +66,30 @@ class Example4 extends Component {
           <table className="table table-hover mb-4">
             <thead className="bg-primary text-white">
               <tr>
-                <th name="News" onClick={props.setColumnSortToggle}>
-                  Name
+                <th name="title" onClick={props.setColumnSortToggle}>
+                  title
                 </th>
-                <th name="original_name" onClick={props.setColumnSortToggle}>
-                  Original name
+                <th name="rating" onClick={props.setColumnSortToggle}>
+                  rating
                 </th>
-                <th name="uri" onClick={props.setColumnSortToggle}>
-                  Download
+                <th name="thumbnail" onClick={props.setColumnSortToggle}>
+                  thumbnail
                 </th>
               </tr>
             </thead>
             <tbody>
               {props.isLoading
               ? <tr><TableData>Loading...<CatLoading /></TableData></tr>
-              : !props.isLoading && props.visibleData.length === 0 
+              : !props.isLoading && !props.visibleData 
               ? <tr>
                   <TableData>No result</TableData>
                 </tr>
-              : props.visibleData.map((asset, i) => {
+              : props.visibleData.map((movie, i) => {
                 return (
                   <tr key={i}>
-                    <TableData>{asset.name}</TableData>
-                    <TableData>{asset.original_name}</TableData>
-                    <TableData><a href={`${asset.uri}`} target="_blank">Download 🏹</a></TableData>
+                    <TableData>{movie.title}</TableData>
+                    <TableData>{movie.rating}</TableData>
+                    <TableData><img src={`${movie.small_cover_image}`} /></TableData>
                   </tr>
                 )
               })}
@@ -112,28 +112,28 @@ class Example4 extends Component {
         <div className="row">
           <div className="col ml-5">
             <div>
-              <h1>PatablesAsync - SCT</h1>
+              <h1>PatablesAsync - Shady Movie API</h1>
               <hr className="mb-4" />
               <PatablesAsync
                 render={renderTable}
                 resultSet={5}
-                sortColumn="id"
-                sortOrder="asc"
-                searchKeys={["joke"]}
+                sortColumn="title" 
+                searchKeys={["rating"]}
                 startingPage={1}
                 pageNeighbors={2}
-                pageParam={''} //! we dont have this
-                limitParam={'max'}
-                searchParam={['q', 'sanity']} 
-                sortParam={[]} //! we dont have this
-                url={`${API_URL}/assets/`}
+                pageParam={'page_number'}
+                limitParam={'limit'}
+                orderByParam={['order_by', 'asc']}
+                searchParam={['query_term', '']} 
+                sortParam={['sort_by', 'rating']} 
+                url={`https://yts.lt/api/v2/list_movies.json?`}
                 config={{ 
                   headers: {
-                      'Authorization': TOKEN
-                    }
+                    'Accept': 'application/json'
+                  }
                 }}
-                dataPath={['data']}
-                pageTotalPath={['data']}
+                dataPath={['data','data', 'movies']}
+                pageTotalPath={['data', 'data']}
               />
             </div>
           </div>
@@ -143,4 +143,4 @@ class Example4 extends Component {
   }
 }
 
-export default Example4;
+export default Example5;

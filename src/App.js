@@ -3,6 +3,7 @@ import Example1 from './components/table/Example1'
 import Example2 from './components/table/Example2'
 import Example3 from './components/table/Example3'
 import Example4 from './components/table/Example4'
+import Example5 from './components/table/Example5'
 
 
 export default class App extends React.Component {
@@ -18,6 +19,7 @@ export default class App extends React.Component {
         <Example2 />
         <Example3 />
         <Example4 />
+        <Example5 />
         <Example1 />
 
       </div>
