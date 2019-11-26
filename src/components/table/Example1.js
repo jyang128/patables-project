@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from '@emotion/styled'
-import { Patables, Pagination } from "patables2.0";
+import { Patables } from "patables2.0";
+import Pagination from '../Pagination'
 import axios from 'axios';
 
 const TableData = styled.td`
@@ -68,10 +69,10 @@ class Example1 extends Component {
           <table className="table table-hover mb-4">
             <thead className="bg-secondary text-white">
               <tr>
-                <th name="firstname" onClick={props.setColumnSortToggle}>
+                <th name="firstname">
                   Joke
                 </th>
-                <th name="id" onClick={props.setColumnSortToggle}>
+                <th name="id">
                   Permalink
                 </th>
               </tr>

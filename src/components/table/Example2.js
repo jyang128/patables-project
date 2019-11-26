@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from '@emotion/styled'
-import { PatablesAsync, Pagination } from "patables2.0";
+import { PatablesAsync } from "patables2.0";
+import Pagination from '../Pagination'
 
 const TableData = styled.td`
   min-width: 120px;
@@ -65,10 +66,10 @@ class Example2 extends Component {
           <table className="table table-hover mb-4">
             <thead className="bg-primary text-white">
               <tr>
-                <th name="firstname" onClick={props.setColumnSortToggle}>
+                <th name="firstname">
                   Joke
                 </th>
-                <th name="id" onClick={props.setColumnSortToggle}>
+                <th name="id">
                   Permalink
                 </th>
               </tr>
@@ -112,12 +113,8 @@ class Example2 extends Component {
               <PatablesAsync
                 render={renderTable}
                 resultSet={5}
-                sortColumn="id"
-                sortOrder="asc"
-                searchKeys={["joke"]}
                 startingPage={1}
                 pageNeighbors={2}
-                //! passing requested parameters separately or in array?
                 pageParam={'page'}
                 limitParam={'limit'}
                 searchParam={['term','']}
@@ -127,8 +124,8 @@ class Example2 extends Component {
                       'Accept': 'application/json'
                     }
                 }}
-                dataPath={['data', 'results']}
-                pageTotalPath={['data','total_pages']}
+                pathToData={['data', 'results']}
+                pathToPageTotal={['data','total_pages']}
               />
             </div>
           </div>

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import styled from '@emotion/styled'
-import { PatablesAsync, Pagination } from "patables2.0";
-import {API_URL, TOKEN} from '../../../credentials'
+import { PatablesAsync } from "patables2.0";
 
 const TableData = styled.td`
   min-width: 120px;
@@ -26,7 +25,9 @@ class Example5 extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      search: ''
+    };
   }
 
   render() {
@@ -79,30 +80,22 @@ class Example5 extends Component {
             </thead>
             <tbody>
               {props.isLoading
-              ? <tr><TableData>Loading...<CatLoading /></TableData></tr>
-              : !props.isLoading && !props.visibleData 
-              ? <tr>
-                  <TableData>No result</TableData>
-                </tr>
-              : props.visibleData.map((movie, i) => {
-                return (
-                  <tr key={i}>
-                    <TableData>{movie.title}</TableData>
-                    <TableData>{movie.rating}</TableData>
-                    <TableData><img src={`${movie.small_cover_image}`} /></TableData>
+                ? <tr><TableData>Loading...<CatLoading /></TableData></tr>
+                : !props.isLoading && !props.visibleData
+                  ? <tr>
+                    <TableData>No result</TableData>
                   </tr>
-                )
-              })}
+                  : props.visibleData.map((movie, i) => {
+                    return (
+                      <tr key={i}>
+                        <TableData>{movie.title}</TableData>
+                        <TableData>{movie.rating}</TableData>
+                        <TableData><img src={`${movie.small_cover_image}`} /></TableData>
+                      </tr>
+                    )
+                  })}
             </tbody>
           </table>
-          {/* <Pagination
-            totalPage={props.totalPages}
-            prevDisabled={props.prevDisabled}
-            nextDisabled={props.nextDisabled}
-            setPageNumber={props.setPageNumber}
-            pageNumber={props.currentPage}
-            paginationButtons={props.paginationButtons} /> */}
-
         </div>
       );
     };
@@ -116,24 +109,23 @@ class Example5 extends Component {
               <hr className="mb-4" />
               <PatablesAsync
                 render={renderTable}
-                resultSet={5}
-                sortColumn="title" 
-                searchKeys={["rating"]}
-                startingPage={1}
-                pageNeighbors={2}
                 pageParam={'page_number'}
                 limitParam={'limit'}
                 orderByParam={['order_by', 'asc']}
                 searchParam={['query_term', '']} 
                 sortParam={['sort_by', 'rating']} 
+                customParam={[
+                  { param: 'kate', value: 'ha' },
+                  { param: 'jess', value: 'woo'} 
+                ]}
                 url={`https://yts.lt/api/v2/list_movies.json?`}
-                config={{ 
+                config={{
                   headers: {
                     'Accept': 'application/json'
                   }
                 }}
-                dataPath={['data','data', 'movies']}
-                pageTotalPath={['data', 'data']}
+                pathToData={['data', 'data', 'movies']}
+                pathToPageTotal={['data', 'data', 'movie_count']}
               />
             </div>
           </div>

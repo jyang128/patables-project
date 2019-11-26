@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from '@emotion/styled'
-import { PatablesAsync, Pagination } from "patables2.0";
+import { PatablesAsync } from "patables2.0";
+import Pagination from '../Pagination'
 
 const TableData = styled.td`
   min-width: 120px;
@@ -115,12 +116,6 @@ class Example3 extends Component {
               <hr className="mb-4" />
               <PatablesAsync
                 render={renderTable}
-                resultSet={5}
-                sortColumn="id"
-                sortOrder="asc"
-                searchKeys={["joke"]}
-                startingPage={1}
-                pageNeighbors={2}
                 pageParam={'page'}
                 limitParam={'pageSize'}
                 searchParam={['q', 'Listening to Your Siri Commands']}
@@ -132,8 +127,8 @@ class Example3 extends Component {
                       'Accept': 'application/json'
                     }
                 }}
-                dataPath={['data','articles']}
-                pageTotalPath={['data','totalResults']}
+                pathToData={['data','articles']}
+                pathToPageTotal={['data','totalResults']}
               />
             </div>
           </div>

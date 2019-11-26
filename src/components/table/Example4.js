@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from '@emotion/styled'
-import { PatablesAsync, Pagination } from "patables2.0";
+import { PatablesAsync } from "patables2.0";
 import {API_URL, TOKEN} from '../../../credentials'
 
 const TableData = styled.td`
@@ -95,14 +95,6 @@ class Example4 extends Component {
               })}
             </tbody>
           </table>
-          {/* <Pagination
-            totalPage={props.totalPages}
-            prevDisabled={props.prevDisabled}
-            nextDisabled={props.nextDisabled}
-            setPageNumber={props.setPageNumber}
-            pageNumber={props.currentPage}
-            paginationButtons={props.paginationButtons} /> */}
-
         </div>
       );
     };
@@ -116,24 +108,16 @@ class Example4 extends Component {
               <hr className="mb-4" />
               <PatablesAsync
                 render={renderTable}
-                resultSet={5}
-                sortColumn="id"
-                sortOrder="asc"
-                searchKeys={["joke"]}
-                startingPage={1}
-                pageNeighbors={2}
-                pageParam={''} //! we dont have this
                 limitParam={'max'}
                 searchParam={['q', 'sanity']} 
-                sortParam={[]} //! we dont have this
                 url={`${API_URL}/assets/`}
                 config={{ 
                   headers: {
                       'Authorization': TOKEN
                     }
                 }}
-                dataPath={['data']}
-                pageTotalPath={['data']}
+                pathToData={['data']}
+                pathToPageTotal={['data']}
               />
             </div>
           </div>
