@@ -31,7 +31,7 @@ class Example4 extends Component {
 
   render() {
     const renderTable = props => {
-      console.log('2) props from PatablesAsync:', props);
+      console.log('4) props from PatablesAsync:', props);
       return (
         <div>
           <div className="form-row mb-3 col">
@@ -66,13 +66,13 @@ class Example4 extends Component {
           <table className="table table-hover mb-4">
             <thead className="bg-primary text-white">
               <tr>
-                <th name="News" onClick={props.setColumnSortToggle}>
+                <th name="name">
                   Name
                 </th>
-                <th name="original_name" onClick={props.setColumnSortToggle}>
+                <th name="original_name">
                   Original name
                 </th>
-                <th name="uri" onClick={props.setColumnSortToggle}>
+                <th name="uri">
                   Download
                 </th>
               </tr>

@@ -32,7 +32,7 @@ class Example5 extends Component {
 
   render() {
     const renderTable = props => {
-      console.log('2) props from PatablesAsync:', props);
+      console.log('5) props from PatablesAsync:', props);
       return (
         <div>
           <div className="form-row mb-3 col">
@@ -73,7 +73,10 @@ class Example5 extends Component {
                 <th name="rating" onClick={props.setColumnSortToggle}>
                   rating
                 </th>
-                <th name="thumbnail" onClick={props.setColumnSortToggle}>
+                <th name="year" onClick={props.setColumnSortToggle}>
+                  year
+                </th>
+                <th name="thumbnail">
                   thumbnail
                 </th>
               </tr>
@@ -90,6 +93,7 @@ class Example5 extends Component {
                       <tr key={i}>
                         <TableData>{movie.title}</TableData>
                         <TableData>{movie.rating}</TableData>
+                        <TableData>{movie.year}</TableData>
                         <TableData><img src={`${movie.small_cover_image}`} /></TableData>
                       </tr>
                     )
@@ -109,6 +113,7 @@ class Example5 extends Component {
               <hr className="mb-4" />
               <PatablesAsync
                 render={renderTable}
+                sortColumn={'title'}
                 pageParam={'page_number'}
                 limitParam={'limit'}
                 orderByParam={['order_by', 'asc']}
