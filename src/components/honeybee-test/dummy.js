@@ -1,0 +1,10 @@
+export default data = [{"id":1,"model":"Stylus","make":"Isuzu","color":"Pink"},
+  {"id":2,"model":"G37","make":"Infiniti","color":"Blue"},
+  {"id":3,"model":"Santa Fe","make":"Hyundai","color":"Indigo"},
+  {"id":4,"model":"Expedition EL","make":"Ford","color":"Red"},
+  {"id":5,"model":"Esprit","make":"Lotus","color":"Violet"},
+  {"id":6,"model":"Sundance","make":"Plymouth","color":"Red"},
+  {"id":7,"model":"Focus","make":"Ford","color":"Green"},
+  {"id":8,"model":"DB9","make":"Aston Martin","color":"Orange"},
+  {"id":9,"model":"MX-5","make":"Mazda","color":"Turquoise"},
+  {"id":10,"model":"RX","make":"Lexus","color":"Indigo"}]
