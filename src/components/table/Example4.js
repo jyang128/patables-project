@@ -108,12 +108,12 @@ class Example4 extends Component {
               <hr className="mb-4" />
               <PatablesAsync
                 render={renderTable}
-                limitParam={'max'}
+                limitParam={['max']}
                 searchParam={['q', 'sanity']} 
                 url={`${API_URL}/assets/`}
                 config={{ 
                   headers: {
-                      'Authorization': TOKEN
+                      Authorization: TOKEN
                     }
                 }}
                 pathToData={['data']}

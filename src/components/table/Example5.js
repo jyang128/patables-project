@@ -114,8 +114,8 @@ class Example5 extends Component {
               <PatablesAsync
                 render={renderTable}
                 sortColumn={'title'}
-                pageParam={'page_number'}
-                limitParam={'limit'}
+                pageParam={['page_number']}
+                limitParam={['limit']}
                 orderByParam={['order_by', 'asc']}
                 searchParam={['query_term', '']} 
                 sortParam={['sort_by', 'rating']} 
@@ -123,10 +123,10 @@ class Example5 extends Component {
                   { param: 'kate', value: 'ha' },
                   { param: 'jess', value: 'woo'} 
                 ]}
-                url={`https://yts.lt/api/v2/list_movies.json?`}
+                url='https://yts.lt/api/v2/list_movies.json?'
                 config={{
                   headers: {
-                    'Accept': 'application/json'
+                    Accept: 'application/json'
                   }
                 }}
                 pathToData={['data', 'data', 'movies']}

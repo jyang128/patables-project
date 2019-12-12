@@ -112,13 +112,11 @@ class Example2 extends Component {
               <hr className="mb-4" />
               <PatablesAsync
                 render={renderTable}
-                resultSet={5}
-                startingPage={1}
                 pageNeighbors={2}
-                pageParam={'page'}
-                limitParam={'limit'}
+                pageParam={['page']}
+                limitParam={['limit', 5]}
                 searchParam={['term','']}
-                url={'https://icanhazdadjoke.com/search/'}
+                url='https://icanhazdadjoke.com/search/'
                 config={{ 
                   headers: {
                       'Accept': 'application/json'

@@ -116,15 +116,15 @@ class Example3 extends Component {
               <hr className="mb-4" />
               <PatablesAsync
                 render={renderTable}
-                pageParam={'page'}
-                limitParam={'pageSize'}
+                pageParam={['page']}
+                limitParam={['pageSize']}
                 searchParam={['q', 'Listening to Your Siri Commands']}
                 sortParam={['sortBy','popularity']}
-                url={'https://newsapi.org/v2/everything?'}
+                url='https://newsapi.org/v2/everything?'
                 apiKey={['apiKey','84e1a2b37e994f70a59d1c73e54333c4']}
                 config={{ 
                   headers: {
-                      'Accept': 'application/json'
+                      Accept: 'application/json'
                     }
                 }}
                 pathToData={['data','articles']}
