@@ -116,8 +116,8 @@ class Example5 extends Component {
                 sortColumn={'title'}
                 pageParam={['page_number']}
                 limitParam={['limit']}
-                orderByParam={['order_by', 'asc']}
-                searchParam={['query_term', '']} 
+                orderByParam={['order_by']}
+                searchParam={['query_term','']} 
                 sortParam={['sort_by', 'rating']} 
                 customParam={[
                   { param: 'kate', value: 'ha' },
@@ -131,6 +131,7 @@ class Example5 extends Component {
                 }}
                 pathToData={['data', 'data', 'movies']}
                 pathToPageTotal={['data', 'data', 'movie_count']}
+                // showURI
               />
             </div>
           </div>

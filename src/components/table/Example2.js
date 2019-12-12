@@ -115,7 +115,7 @@ class Example2 extends Component {
                 pageNeighbors={2}
                 pageParam={['page']}
                 limitParam={['limit', 5]}
-                searchParam={['term','']}
+                searchParam={['term']}
                 url='https://icanhazdadjoke.com/search/'
                 config={{ 
                   headers: {
