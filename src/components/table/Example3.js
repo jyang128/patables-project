@@ -116,8 +116,8 @@ class Example3 extends Component {
               <hr className="mb-4" />
               <PatablesAsync
                 render={renderTable}
-                pageParam={['page']}
-                limitParam={['pageSize']}
+                pageParam={['page',1]}
+                limitParam={['pageSize',10]}
                 searchParam={['q', 'Listening to Your Siri Commands']}
                 sortParam={['sortBy','popularity']}
                 url='https://newsapi.org/v2/everything?'

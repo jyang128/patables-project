@@ -113,9 +113,9 @@ class Example2 extends Component {
               <PatablesAsync
                 render={renderTable}
                 pageNeighbors={2}
-                pageParam={['page']}
-                limitParam={['limit', 5]}
-                searchParam={['term']}
+                pageParam={['page', 1]}
+                limitParam={['limit', 5]} 
+                searchParam={['term', '']}
                 url='https://icanhazdadjoke.com/search/'
                 config={{ 
                   headers: {

@@ -113,11 +113,10 @@ class Example5 extends Component {
               <hr className="mb-4" />
               <PatablesAsync
                 render={renderTable}
-                sortColumn={'title'}
-                pageParam={['page_number']}
-                limitParam={['limit']}
-                orderByParam={['order_by']}
-                searchParam={['query_term','']} 
+                // pageParam={['page_number']}
+                // limitParam={['limit']}
+                orderByParam={['order_by', 'asc']}
+                searchParam={['query_term', '']} 
                 sortParam={['sort_by', 'rating']} 
                 customParam={[
                   { param: 'kate', value: 'ha' },
