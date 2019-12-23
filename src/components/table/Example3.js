@@ -129,6 +129,7 @@ class Example3 extends Component {
                 }}
                 pathToData={['data','articles']}
                 pathToPageTotal={['data','totalResults']}
+                showURI
               />
             </div>
           </div>

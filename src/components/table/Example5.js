@@ -113,8 +113,7 @@ class Example5 extends Component {
               <hr className="mb-4" />
               <PatablesAsync
                 render={renderTable}
-                // pageParam={['page_number']}
-                // limitParam={['limit']}
+                limitParam={['limit', 5]}
                 orderByParam={['order_by', 'asc']}
                 searchParam={['query_term', '']} 
                 sortParam={['sort_by', 'rating']} 
@@ -130,7 +129,7 @@ class Example5 extends Component {
                 }}
                 pathToData={['data', 'data', 'movies']}
                 pathToPageTotal={['data', 'data', 'movie_count']}
-                // showURI
+                showURI
               />
             </div>
           </div>
