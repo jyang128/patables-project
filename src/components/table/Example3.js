@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from '@emotion/styled'
-import { PatablesAsync } from "patables2.0";
+import PatablesAsync from "./PatablesAsync";
 import Pagination from '../Pagination'
 
 const TableData = styled.td`
@@ -118,7 +118,7 @@ class Example3 extends Component {
                 render={renderTable}
                 pageParam={'page'}
                 limitParam={'pageSize'}
-                searchParam={['q', 'Listening to Your Siri Commands']}
+                searchParam={['q', 'puppies']}
                 sortParam={['sortBy','popularity']}
                 url={'https://newsapi.org/v2/everything?'}
                 apiKey={['apiKey','84e1a2b37e994f70a59d1c73e54333c4']}

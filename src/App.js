@@ -16,11 +16,11 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="container">
-        <Example2 />
+        {/* <Example2 /> */}
         <Example3 />
-        <Example4 />
-        <Example5 />
-        <Example1 />
+        {/* <Example4 /> */}
+        {/* <Example5 /> */}
+        {/* <Example1 /> */}
 
       </div>
     )

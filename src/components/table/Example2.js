@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from '@emotion/styled'
-import { PatablesAsync } from "patables2.0";
+import { PatablesAsync } from "patables";
 import Pagination from '../Pagination'
 
 const TableData = styled.td`

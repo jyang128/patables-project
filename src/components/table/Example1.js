@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from '@emotion/styled'
-import { Patables } from "patables2.0";
+import { Patables } from "patables";
 import Pagination from '../Pagination'
 import axios from 'axios';
 
